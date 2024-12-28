@@ -4,11 +4,29 @@ const Form = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
+  const [error, setError] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formdata = { name, email, message };
-    console.log(formdata);
+    // const formdata = { name, email, message };
+    handleError();
+    setEmail("");
+    setMessage("");
+    setName("");
+  };
+  alert(`Thank you ${name}`);
+  const handleError = () => {
+    const newError = {};
+    if (!name) {
+      newError.name = "Name is required";
+    }
+    if (!email) {
+      newError.email = "Email is required";
+    }
+    if (!message) {
+      newError.message = "Please drop a  message";
+    }
+    setError(newError);
+    return Object.keys(newError).length === 0;
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -33,6 +51,7 @@ const Form = () => {
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-300"
             placeholder="Enter your name"
           />
+          {error?.name && <p className="text-red-500 italic">{error.name}</p>}
         </div>
 
         <div className="mb-4">
@@ -48,6 +67,7 @@ const Form = () => {
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-300"
             placeholder="Enter your email"
           />
+          {error.email && <p className="text-red-500 italic">{error.email}</p>}
         </div>
 
         <div className="mb-4">
@@ -63,6 +83,9 @@ const Form = () => {
             placeholder="Enter your message"
             rows="4"
           ></textarea>
+          {error.message && (
+            <p className="text-red-500 italic">{error.message}</p>
+          )}
         </div>
 
         <button

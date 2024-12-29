@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Form from "./components/Form";
+import ApiCaling from "./components/API/ApiCaling";
 
 // import React from "react";
 const products = [
@@ -59,6 +60,7 @@ const App = () => {
         <div className=" text-center">
           <button className="bg-gray-200 text-zinc-800 text-base p-40">
             <Form />
+            <ApiCaling />
           </button>
         </div>
       </div>

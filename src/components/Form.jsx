@@ -12,8 +12,8 @@ const Form = () => {
     setEmail("");
     setMessage("");
     setName("");
+    alert(`Thank you ${name}`);
   };
-  alert(`Thank you ${name}`);
   const handleError = () => {
     const newError = {};
     if (!name) {

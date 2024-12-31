@@ -1,12 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../redux/features/counter/counterSlice";
+import { rootState } from "../redux/store";
+import React from "react";
+import { useAppDispatch, useAppSelector } from "../redux/features/hooks/hooks";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const { count } = useSelector((state) => state.counter);
+  const dispatch = useAppDispatch();
+  const { count } = useAppSelector((state) => state.counter);
 
-  const handleIncrement = () => {
-    dispatch(increment());
+  const handleIncrement = (amount: number) => {
+    dispatch(increment(amount));
   };
   const handleDecrement = () => {
     dispatch(decrement());
@@ -15,7 +18,7 @@ const Home = () => {
     <div className="flex justify-center items-center h-[100vh]">
       <div className="space-y-5">
         <button
-          onClick={handleIncrement}
+          onClick={() => handleIncrement(5)}
           className="px-3 py-2 shadow-md bg-lime-200"
         >
           Increment
